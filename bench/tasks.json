@@ -1,0 +1,12 @@
+[
+  {"id": "sendfile", "prompt": "In this repo, how does res.sendFile validate its path argument, and what exact error is thrown for a relative path without a root option?",
+   "facts": ["path must be absolute or specify root to res\\.sendFile", "TypeError", "root"]},
+  {"id": "next-route", "prompt": "In this repo's router, explain the difference between calling next('route') and next('router') from a handler. Cite the code.",
+   "facts": ["route", "router", "skip|remaining|rest", "exit|done"]},
+  {"id": "protocol", "prompt": "How does req.protocol decide between http and https in this repo, and what role does the 'trust proxy' setting play?",
+   "facts": ["X-Forwarded-Proto", "encrypted", "trust proxy", "comma|first"]},
+  {"id": "content-type", "prompt": "List every method on the response object in this repo that can set the Content-Type header, and what default type each uses.",
+   "facts": ["res\\.type|\\btype\\(", "send", "json", "jsonp", "format", "attachment", "text/javascript", "application/json"]},
+  {"id": "send-status", "prompt": "Trace what res.send does in this repo from the moment it is called until the body is written: argument handling, content type, ETag, freshness and HEAD handling.",
+   "facts": ["deprecat", "etag", "fresh", "304", "HEAD", "Content-Length"]}
+]

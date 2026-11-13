@@ -27,7 +27,7 @@ printf '%s\n' "$files" | while IFS= read -r f; do
   n=$(wc -l < "$f" | tr -d ' ')
   [ "$n" -gt "$min" ] || continue
   jq -nc --arg f "$f" --argjson n "$n" --arg cwd "$cwd" --arg t "$tool" \
-    '{ts: (now|todate), tool: $t, cwd: $cwd, file: $f, lines: $n}' >> "$HOME/.claude/shunt/log.jsonl"
+    '{ts: (now|todate), tool: $t, cwd: $cwd, file: $f, lines: $n}' >> "$HOME/.claude/ai-config/shunt/log.jsonl"
   echo "shunt: $f has $n lines (limit $min). Do not read it whole. Delegate to the bulk-reader subagent (Agent tool, subagent_type \"bulk-reader\") with a precise question, batching all files you need into one call. If you need exact text to edit, Read only that section with offset/limit." >&2
   exit 2
 done

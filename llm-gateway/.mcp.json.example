@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "llm-gateway": {
+      "command": "${USERPROFILE}\\.claude\\ai-config\\llm-gateway\\.venv\\Scripts\\python.exe",
+      "args": ["${USERPROFILE}\\.claude\\ai-config\\llm-gateway\\mcp_server\\server.py"],
+      "env": {
+        "LLM_GATEWAY_URL": "http://localhost:4000",
+        "LLM_GATEWAY_KEY": "your-litellm-master-key",
+        "PRIVATE_SAFE_GROUPS": ""
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+model_list:
+  - model_name: fast
+    litellm_params:
+      model: gemini/gemini-3.5-flash-lite
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: fast
+    litellm_params:
+      model: groq/llama-3.1-8b-instant
+      api_key: os.environ/GROQ_API_KEY
+  - model_name: fast
+    litellm_params:
+      model: cerebras/gpt-oss-120b
+      api_key: os.environ/CEREBRAS_API_KEY
+  - model_name: fast
+    litellm_params:
+      model: openrouter/google/gemma-4-31b-it:free
+      api_key: os.environ/OPENROUTER_API_KEY
+
+  - model_name: code
+    litellm_params:
+      model: groq/openai/gpt-oss-120b
+      api_key: os.environ/GROQ_API_KEY
+  - model_name: code
+    litellm_params:
+      model: cerebras/qwen-3.8-27b
+      api_key: os.environ/CEREBRAS_API_KEY
+  - model_name: code
+    litellm_params:
+      model: openrouter/cohere/north-mini-code:free
+      api_key: os.environ/OPENROUTER_API_KEY
+  - model_name: code
+    litellm_params:
+      model: gemini/gemini-3.6-flash
+      api_key: os.environ/GEMINI_API_KEY
+
+  - model_name: long-context
+    litellm_params:
+      model: gemini/gemini-3.6-flash
+      api_key: os.environ/GEMINI_API_KEY
+  - model_name: long-context
+    litellm_params:
+      model: openrouter/thinkingmachines/inkling-2-small:free
+      api_key: os.environ/OPENROUTER_API_KEY
+  - model_name: long-context
+    litellm_params:
+      model: openrouter/nvidia/nemotron-3-ultra-550b-a55b:free
+      api_key: os.environ/OPENROUTER_API_KEY
+  - model_name: long-context
+    litellm_params:
+      model: openrouter/baidu/ernie-5.5-flash-preview:free
+      api_key: os.environ/OPENROUTER_API_KEY
+
+litellm_settings:
+  num_retries: 2
+  request_timeout: 60
+  drop_params: true
+
+router_settings:
+  routing_strategy: simple-shuffle
+  allowed_fails: 1
+  cooldown_time: 60
+  fallbacks:
+    - fast: ["code"]
+    - code: ["fast"]
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
